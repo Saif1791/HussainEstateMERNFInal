@@ -188,7 +188,7 @@ export default function Profile() {
           type="text"
           placeholder="username"
           defaultValue={currentUser.userName}
-          id="username"
+          id="userName"
           className="border p-3 rounded-lg"
           onChange={handleChange}
         />

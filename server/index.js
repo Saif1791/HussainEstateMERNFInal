@@ -8,6 +8,7 @@ import googleRouter from "./routes/google.route.js";
 import cookieParser from "cookie-parser";
 import signoutRouter from "./routes/signout.route.js";
 import listingRouter from "./routes/listing.route.js";
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -28,12 +29,19 @@ mongoose
     console.log(err);
   });
 
+const __dirname = path.resolve();
+
 app.use("/server/user", userRouter);
 app.use("/server", signupRouter);
 app.use("/server", signinRouter);
 app.use("/server", googleRouter);
 app.use("/server", signoutRouter);
 app.use("/server/listing", listingRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
