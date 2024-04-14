@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { MdLocationOn } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBath,
+  faBed,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function ListingItem({ listing }) {
   return (
@@ -19,7 +24,7 @@ export default function ListingItem({ listing }) {
             {listing.name}
           </p>
           <div className="flex items-center gap-1">
-            <MdLocationOn className="h-4 w-4 text-green-700" />
+            <FontAwesomeIcon icon={faLocationDot} bounce />
             <p className="text-sm text-gray-600 truncate w-full">
               {listing.address}
             </p>
@@ -33,14 +38,12 @@ export default function ListingItem({ listing }) {
           </p>
           <div className="text-slate-700 flex gap-4">
             <div className="font-bold text-xs">
-              {listing.bedrooms > 1
-                ? `${listing.bedrooms} beds `
-                : `${listing.bedrooms} bed `}
+              <FontAwesomeIcon icon={faBed} className="text-lg" />{" "}
+              {listing.bedrooms}
             </div>
             <div className="font-bold text-xs">
-              {listing.bathrooms > 1
-                ? `${listing.bathrooms} baths `
-                : `${listing.bathrooms} bath `}
+              <FontAwesomeIcon icon={faBath} className="text-lg" />{" "}
+              {listing.bathrooms}
             </div>
           </div>
         </div>

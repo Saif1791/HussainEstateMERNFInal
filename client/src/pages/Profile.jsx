@@ -18,6 +18,13 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPenToSquare,
+  faRightFromBracket,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -186,7 +193,7 @@ export default function Profile() {
         </p>
         <input
           type="text"
-          placeholder="username"
+          placeholder="Username"
           defaultValue={currentUser.userName}
           id="userName"
           className="border p-3 rounded-lg"
@@ -194,7 +201,7 @@ export default function Profile() {
         />
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           id="email"
           defaultValue={currentUser.email}
           className="border p-3 rounded-lg"
@@ -202,19 +209,19 @@ export default function Profile() {
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={handleChange}
           id="password"
           className="border p-3 rounded-lg"
         />
         <button
           disabled={loading}
-          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-slate-700 text-white rounded-lg p-3 hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Update"}
+          {loading ? "Updating..." : "Update Profile"}
         </button>
         <Link
-          className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
+          className="bg-green-700 text-white p-3 rounded-lg text-center hover:opacity-95"
           to={"/create"}
         >
           Create Listing
@@ -225,10 +232,10 @@ export default function Profile() {
           onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
         >
-          Delete account
+          Delete Account <FontAwesomeIcon icon={faTrash} />
         </span>
         <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-          Sign out
+          Sign out <FontAwesomeIcon icon={faRightFromBracket} />
         </span>
       </div>
 
@@ -237,7 +244,7 @@ export default function Profile() {
         {updateSuccess ? "User is updated successfully!" : ""}
       </p>
       <button onClick={handleShowListings} className="text-green-700 w-full">
-        Show Listings
+        View Listings
       </button>
       <p className="text-red-700 mt-5">
         {showListingsError ? "Error showing listings" : ""}
@@ -251,7 +258,7 @@ export default function Profile() {
           {userListings.map((listing) => (
             <div
               key={listing._id}
-              className="border rounded-lg p-3 flex justify-between items-center gap-4"
+              className="rounded-lg p-3 flex justify-between items-center gap-4"
             >
               <Link to={`/listing/${listing._id}`}>
                 <img
@@ -267,15 +274,17 @@ export default function Profile() {
                 <p>{listing.name}</p>
               </Link>
 
-              <div className="flex flex-col item-center">
+              <div className="flex flex-col item-center gap-2">
                 <button
                   onClick={() => handleListingDelete(listing._id)}
                   className="text-red-700 uppercase"
                 >
-                  Delete
+                  <FontAwesomeIcon icon={faTrash} shake />
                 </button>
                 <Link to={`/listing/edit/${listing._id}`}>
-                  <button className="text-green-700 uppercase">Edit</button>
+                  <button className="text-green-700 uppercase">
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
                 </Link>
               </div>
             </div>

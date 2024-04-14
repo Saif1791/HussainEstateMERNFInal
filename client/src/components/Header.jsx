@@ -1,7 +1,8 @@
-import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -37,13 +38,13 @@ export default function Header() {
         >
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search"
             className="bg-transparent focus:outline-none w-24 sm:w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button>
-            <FaSearch className="text-slate-600" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} shake />
           </button>
         </form>
         <ul className="flex gap-4">

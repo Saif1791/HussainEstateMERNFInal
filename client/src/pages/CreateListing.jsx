@@ -8,11 +8,12 @@ import {
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     images: [],
     name: "",
@@ -31,9 +32,9 @@ export default function CreateListing() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
 
   const handleImageSubmit = (e) => {
+    const files = e.target.files;
     if (files.length > 0 && files.length + formData.images.length < 7) {
       setUploading(true);
       setImageUploadError(false);
@@ -51,7 +52,7 @@ export default function CreateListing() {
           setImageUploadError(false);
           setUploading(false);
         })
-        .catch((err) => {
+        .catch(() => {
           setImageUploadError("Image upload failed (2 mb max per image)");
           setUploading(false);
         });
@@ -313,36 +314,25 @@ export default function CreateListing() {
           <p className="font-semibold">
             Images:
             <span className="font-normal text-gray-600 ml-2">
-              The first image will be the cover (max 6)
+              The first image will be the cover image (max 6)
             </span>
           </p>
           <div className="flex gap-4">
             <input
-              onChange={(e) => setFiles(e.target.files)}
-              className="p-3 border border-gray-300 rounded w-full"
+              onChange={handleImageSubmit}
+              className="p-3 rounded w-full"
               type="file"
               id="images"
               accept="image/*"
               multiple
             />
-            <button
-              type="button"
-              disabled={uploading}
-              onClick={handleImageSubmit}
-              className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
-            >
-              {uploading ? "Uploading..." : "Upload"}
-            </button>
           </div>
           <p className="text-red-700 text-sm">
             {imageUploadError && imageUploadError}
           </p>
           {formData.images.length > 0 &&
             formData.images.map((url, index) => (
-              <div
-                key={url}
-                className="flex justify-between p-3 border items-center"
-              >
+              <div key={url} className="flex justify-between p-3 items-center">
                 <img
                   src={url}
                   alt="listing image"
@@ -353,7 +343,7 @@ export default function CreateListing() {
                   onClick={() => handleRemoveImage(index)}
                   className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
                 >
-                  Delete
+                  <FontAwesomeIcon icon={faTrash} shake />
                 </button>
               </div>
             ))}

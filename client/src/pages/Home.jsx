@@ -95,7 +95,7 @@ export default function Home() {
                 className="text-sm text-blue-800 hover:underline"
                 to={"/search?offer=true"}
               >
-                Show more offers
+                Show more places on offer
               </Link>
             </div>
             <div className="flex flex-wrap gap-4">
