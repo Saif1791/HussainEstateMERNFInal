@@ -1,7 +1,3 @@
-Here's an example README template for a Full Stack MERN web application that acts as a Real Estate Marketplace for users, incorporating technologies such as Redux, Redux Toolkit, JWT, CookieParser, bcryptjs, and others:
-
----
-
 # Hussain Estate Marketplace
 
 Welcome to the Hussain Estate Marketplace, a full-stack web application designed to connect buyers and sellers of real estate properties. Built using the MERN stack (MongoDB, Express.js, React, Node.js), this app offers a seamless user experience for browsing, listing, and managing real estate properties.
