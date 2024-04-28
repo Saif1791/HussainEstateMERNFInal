@@ -67,5 +67,5 @@ Welcome to the Hussain Estate Marketplace, a full-stack web application designed
 3. Open your browser and navigate to `http://localhost:5173`.
 
 ## Contact
-For questions or support, please contact (mailto:your-saifsep17@gmail.com) or open an issue on GitHub.
+For questions or support, please contact (mailto:saifsep17@gmail.com) or open an issue on GitHub.
 ---
