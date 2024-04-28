@@ -55,13 +55,13 @@ Welcome to the Hussain Estate Marketplace, a full-stack web application designed
 1. Start the backend server:
    ```bash
    cd server
-   npm start # or yarn start
+   npm run dev # or yarn start
    ```
 
 2. Start the frontend development server:
    ```bash
    cd client
-   npm start # or yarn start
+   npm run dev # or yarn start
    ```
 
 3. Open your browser and navigate to `http://localhost:5173`.
